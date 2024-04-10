@@ -11,7 +11,7 @@ router = APIRouter()
 logger = Logger()
 
 
-@router.get("/user_banner", status_code=200)
+@router.get("/user_banner", status_code=200, responses={404: {"description": "Баннер не найден"}, 401: {"description": "Пользователь не авторизован"}, 500: {"description": "Внутренняя ошибка сервера"}},)
 async def get_user_banner(tag_id: int, feature_id: int, use_last_revision: bool = False,
                           token: str = Header(None)):
     try:
@@ -27,7 +27,7 @@ async def get_user_banner(tag_id: int, feature_id: int, use_last_revision: bool 
         raise HTTPException(status_code=500, detail="Внутренняя ошибка сервера")
 
 
-@router.get("/banner", status_code=200)
+@router.get("/banner", status_code=200, responses={404: {"description": "Баннер не найден"}, 401: {"description": "Пользователь не авторизован"}, 500: {"description": "Внутренняя ошибка сервера"}},)
 async def read_banners(token: str = Header(None), feature_id: int = None, tag_id: int = None,
                        limit: int = None, offset: int = None):
     try:
@@ -41,7 +41,7 @@ async def read_banners(token: str = Header(None), feature_id: int = None, tag_id
         raise HTTPException(status_code=500, detail="Внутренняя ошибка сервера")
 
 
-@router.post("/banner")
+@router.post("/banner", status_code=201, responses={404: {"description": "Баннер не найден"}, 401: {"description": "Пользователь не авторизован"}, 500: {"description": "Внутренняя ошибка сервера"}},)
 async def create_new_banner(banner: BannerCreate, token: str = Header(None)):
     try:
         authenticate_admin_token(token)
@@ -54,7 +54,7 @@ async def create_new_banner(banner: BannerCreate, token: str = Header(None)):
         raise HTTPException(status_code=500, detail="Внутренняя ошибка сервера")
 
 
-@router.patch("/banner/{id}", status_code=200)
+@router.patch("/banner/{id}", status_code=200, responses={404: {"description": "Баннер не найден"}, 401: {"description": "Пользователь не авторизован"}, 500: {"description": "Внутренняя ошибка сервера"}},)
 async def update_banner_info(id: int, banner: BannerUpdate, token: str = Header(None)):
     try:
         authenticate_admin_token(token)
@@ -69,7 +69,7 @@ async def update_banner_info(id: int, banner: BannerUpdate, token: str = Header(
         raise HTTPException(status_code=500, detail="Внутренняя ошибка сервера")
 
 
-@router.delete("/banner/{id}", status_code=204)
+@router.delete("/banner/{id}", status_code=204, responses={404: {"description": "Баннер не найден"}, 401: {"description": "Пользователь не авторизован"}, 500: {"description": "Внутренняя ошибка сервера"}},)
 async def delete_banner_by_id(id: int, token: str = Header(None)):
     try:
         authenticate_admin_token(token)

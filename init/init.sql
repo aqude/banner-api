@@ -8,5 +8,5 @@ CREATE TABLE user_banners (
     is_active BOOLEAN,
     created_at TIMESTAMP,
     updated_at TIMESTAMP,
-    user_token TEXT -- заглушка
+    user_token TEXT DEFAULT '9e4328cad64f4e51aef1dbc6322db313' -- заглушка
 );
