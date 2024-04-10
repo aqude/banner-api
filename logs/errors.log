@@ -1,0 +1,28 @@
+2024-04-09 15:36:20.783979 - 'charmap' codec can't encode characters in position 92-96: character maps to <undefined>
+2024-04-09 15:41:00.601058 - 2 validation errors for Banner
+created_at
+  Input should be a valid string [type=string_type, input_value=datetime.datetime(2024, 4, 8, 17, 27, 18, 372454), input_type=datetime]
+    For further information visit https://errors.pydantic.dev/2.6/v/string_type
+updated_at
+  Input should be a valid string [type=string_type, input_value=datetime.datetime(2024, 4, 8, 17, 27, 18, 372454), input_type=datetime]
+    For further information visit https://errors.pydantic.dev/2.6/v/string_type
+2024-04-09 15:43:30.786688 - 'charmap' codec can't encode characters in position 92-96: character maps to <undefined>
+2024-04-09 15:45:46.359152 - 'charmap' codec can't encode characters in position 92-96: character maps to <undefined>
+2024-04-09 15:49:43.102041 - the server expects 0 arguments for this query, 4 were passed
+HINT:  Check the query against the passed list of arguments.  Note that parameters are supported only in SELECT, INSERT, UPDATE, DELETE, and VALUES statements, and will *not* work in statements  like CREATE VIEW or DECLARE CURSOR.
+2024-04-09 16:39:45.536730 - the server expects 4 arguments for this query, 0 were passed
+HINT:  Check the query against the passed list of arguments.
+2024-04-09 17:29:24.298274 - syntax error at end of input
+2024-04-09 17:29:56.049652 - syntax error at end of input
+2024-04-09 17:34:15.163085 - syntax error at or near "="
+2024-04-09 17:36:36.065624 - syntax error at or near "="
+2024-04-09 17:46:02.299588 - invalid input for query argument $1: 10 (a sized iterable container expected (got type 'int'))
+2024-04-09 17:49:18.249942 - invalid input for query argument $1: 10 (a sized iterable container expected (got type 'int'))
+2024-04-09 21:23:46.956826 - column "tag_id" does not exist
+HINT:  Perhaps you meant to reference the column "user_banners.tag_ids".
+2024-04-09 21:24:22.130919 - could not find array type for data type integer[]
+2024-04-09 21:39:31.061068 - invalid input for query argument $1: 10 (a sized iterable container expected (got type 'int'))
+2024-04-10 11:28:25.121037 - Multiple exceptions: [Errno 10061] Connect call failed ('::1', 5432, 0, 0), [Errno 10061] Connect call failed ('127.0.0.1', 5432)
+2024-04-10 16:49:00.229210 - syntax error at or near "WHERE"
+2024-04-10 16:50:53.641786 - invalid input for query argument $1: 10 (a sized iterable container expected (got type 'int'))
+2024-04-10 17:05:19.071570 - column "revision" does not exist

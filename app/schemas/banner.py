@@ -11,6 +11,7 @@ class Content(BaseModel):
 
 
 class BannerBase(BaseModel):
+    banner_id: int
     tag_ids: List[int]
     feature_id: int
     content: Content
@@ -26,6 +27,5 @@ class BannerUpdate(BannerBase):
 
 
 class Banner(BannerBase):
-    id: int
-    created_at: datetime
-    updated_at: datetime
+    created_at: str
+    updated_at: str
