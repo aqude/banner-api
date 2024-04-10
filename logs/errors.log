@@ -26,3 +26,8 @@ HINT:  Perhaps you meant to reference the column "user_banners.tag_ids".
 2024-04-10 16:49:00.229210 - syntax error at or near "WHERE"
 2024-04-10 16:50:53.641786 - invalid input for query argument $1: 10 (a sized iterable container expected (got type 'int'))
 2024-04-10 17:05:19.071570 - column "revision" does not exist
+2024-04-10 21:50:54.082641 - app.schemas.banner.Content() argument after ** must be a mapping, not NoneType
+2024-04-10 21:52:40.106810 - 'NoneType' object is not subscriptable
+2024-04-10 21:58:42.794122 - column "user_tokenz" does not exist
+HINT:  Perhaps you meant to reference the column "user_banners.user_token".
+2024-04-10 21:59:06.723918 - 'NoneType' object is not subscriptable

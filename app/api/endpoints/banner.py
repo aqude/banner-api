@@ -1,5 +1,3 @@
-from typing import Optional, List, Type
-
 from fastapi import APIRouter, HTTPException, Header
 
 from app.api.dependencies import authenticate_user_token, authenticate_admin_token
@@ -13,16 +11,15 @@ router = APIRouter()
 logger = Logger()
 
 
-@router.get("/user_banner")
+@router.get("/user_banner", status_code=200)
 async def get_user_banner(tag_id: int, feature_id: int, use_last_revision: bool = False,
                           token: str = Header(None)):
     try:
         authenticate_user_token(token)
         banner = await get_banner_for_user(tag_id, feature_id, use_last_revision, token)
-        if banner:
-            return banner
-        else:
-            raise HTTPException(status_code=404, detail="Баннер для пользователя не найден")
+        return banner
+    except NotFoundError:
+        raise HTTPException(status_code=404, detail="Баннер не найден")
     except AuthenticationError:
         raise HTTPException(status_code=401, detail="Пользователь не авторизован")
     except Exception as e:

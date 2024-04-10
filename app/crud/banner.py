@@ -6,19 +6,20 @@ from app.exceptions import NotFoundError
 from app.schemas.banner import BannerCreate, BannerUpdate, Banner, Content
 
 
-async def get_banner_for_user(tag_id, feature_id, use_last_revision, token):
+async def get_banner_for_user(tag_id, feature_id, use_last_revision, token: str):
     async with (await get_db()).acquire() as conn:
         check_active_status = """
         SELECT title, text, url FROM user_banners
-        WHERE user_token = $1 AND is_active = TRUE
+        WHERE user_token = $1 and is_active = True
         """
-        check = await conn.fetchval(check_active_status, token)
-        if check:
+        check = await conn.fetchrow(check_active_status, token)
+        if check is None:
             raise NotFoundError
+
         use_last_revision_query = """
         SELECT title, text, url FROM user_banners
             WHERE tag_ids @> $1 AND feature_id = $2 AND user_token = $3
-            ORDER BY title DESC
+            ORDER BY user_token DESC
             LIMIT 1
         """
         else_query = """
@@ -32,7 +33,13 @@ async def get_banner_for_user(tag_id, feature_id, use_last_revision, token):
             query = else_query
             values = ([tag_id], feature_id, token)
         banner = await conn.fetchrow(query, *values)
-        banner = Content(**banner)
+        if banner is None:
+            raise NotFoundError
+        banner = Content(
+            title=banner['title'],
+            text=banner['text'],
+            url=banner['url']
+        )
         if banner:
             return banner
         else:
