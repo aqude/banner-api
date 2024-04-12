@@ -17,8 +17,11 @@ class BannerBase(BaseModel):
     is_active: bool
 
 
-class BannerCreate(BannerBase):
-    pass
+class BannerCreate(BaseModel):
+    tag_ids: List[int]
+    feature_id: int
+    content: Content
+    is_active: bool
 
 
 class BannerUpdate(BannerBase):
