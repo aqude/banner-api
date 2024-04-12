@@ -1,6 +1,6 @@
 import asyncpg
 
-from app.api.core.config import settings
+from api.core.config import settings
 
 
 async def get_db():

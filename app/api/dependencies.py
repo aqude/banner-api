@@ -1,6 +1,6 @@
 from fastapi import Header
 
-from app.exceptions import AuthenticationError
+from exceptions import AuthenticationError
 
 # заглушка
 user_token = "9e4328cad64f4e51aef1dbc6322db313"

@@ -1,9 +1,9 @@
 from datetime import datetime
 from typing import List
 
-from app.api.core.database import get_db
-from app.exceptions import NotFoundError
-from app.schemas.banner import BannerCreate, BannerUpdate, Banner, Content
+from api.core.database import get_db
+from exceptions import NotFoundError
+from schemas.banner import BannerCreate, BannerUpdate, Banner, Content
 
 
 async def get_banner_for_user(tag_id, feature_id, use_last_revision, token: str):

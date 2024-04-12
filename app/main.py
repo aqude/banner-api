@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from app.api.endpoints import banner
+from api.endpoints import banner
 
 app = FastAPI()
 

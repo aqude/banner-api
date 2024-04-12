@@ -1,11 +1,11 @@
 from fastapi import APIRouter, HTTPException, Header
 
-from app.api.dependencies import authenticate_user_token, authenticate_admin_token
-from app.crud.banner import get_banner_for_user, create_banner, update_banner, get_all_banners, delete_banner
-from app.exceptions import AuthenticationError, NotFoundError
-from app.logger.logger import Logger
-from app.schemas.banner import BannerCreate, BannerUpdate, Banner
-from app.schemas.response import Response
+from api.dependencies import authenticate_user_token, authenticate_admin_token
+from crud.banner import get_banner_for_user, create_banner, update_banner, get_all_banners, delete_banner
+from exceptions import AuthenticationError, NotFoundError
+from logger.logger import Logger
+from schemas.banner import BannerCreate, BannerUpdate, Banner
+from schemas.response import Response
 
 router = APIRouter()
 logger = Logger()
