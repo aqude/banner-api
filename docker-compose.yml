@@ -1,6 +1,24 @@
 version: '3'
 
 services:
+  locust:
+    image: locustio/locust:latest
+    ports:
+      - "8089:8089"
+    volumes:
+      - ./locust/:/mnt/locust
+    command: -f /mnt/locust/locustfile.py --headless -u 2 -r 1 --run-time 15s --host http://project-api:8000
+#    command: bash -c "sleep 20 && locust -f /mnt/locust/locustfile.py --headless -u 50 -r 2 --run-time 60s --host http://project-api:8000"
+    depends_on:
+      - project-api
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/" ]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+    networks:
+      net:
+
   project-api:
     build:
       context: .
@@ -11,6 +29,9 @@ services:
       DATABASE_URL: postgresql://postgresql:postgresql@db:5432/postgresql
     depends_on:
       - db
+    networks:
+      net:
+
   db:
     image: postgres:latest
     restart: always
@@ -23,5 +44,12 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./init/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      net:
+
 volumes:
   postgres_data:
+
+networks:
+  net:
+    driver: bridge
